@@ -6,96 +6,20 @@ import {useFavoriteStore} from "@/stores/useFavoriteStore.js";
 import {storeToRefs} from "pinia";
 
 const allProducts = ref([])
-//const products = ref([])
-
-const products = [
-  {
-    id: 1,
-    image: '../images/pic--byz-s852i.png',
-    title: 'Apple BYZ S852I',
-    category: 'Наушники',
-    price: 2927,
-    price_old: 3527,
-    rating: 4.7,
-  },
-  {
-    id: 2,
-    image: '../images/pic--apple-earpods.png',
-    title: 'Apple EarPods',
-    category: 'Наушники',
-    price: 2327,
-    rating: 4.5,
-  },
-  {
-    id: 3,
-    image: '../images/pic--apple-earpods-box.png',
-    title: 'Apple EarPods',
-    category: 'Наушники',
-    price: 2327,
-    rating: 4.5,
-  },
-  {
-    id: 4,
-    image: '../images/pic--byz-s852i.png',
-    title: 'Apple BYZ S852I',
-    category: 'Наушники',
-    price: 2927,
-    rating: 4.7,
-  },
-  {
-    id: 5,
-    image: '../images/pic--apple-earpods.png',
-    title: 'Apple EarPods',
-    category: 'Наушники',
-    price: 2327,
-    rating: 4.5,
-  },
-  {
-    id: 6,
-    image: '../images/pic--apple-earpods-box.png',
-    title: 'Apple BYZ S852I',
-    category: 'Наушники',
-    price: 2327,
-    rating: 4.7,
-  },
-  {
-    id: 7,
-    image: '../images/pic--apple-airpods.png',
-    title: 'Apple AirPods',
-    category: 'Беспроводные наушники',
-    price: 9527,
-    rating: 4.7,
-  },
-  {
-    id: 8,
-    image: '../images/pic--gerlax.png',
-    title: 'GERLAX GH-04',
-    category: 'Беспроводные наушники',
-    price: 6527,
-    rating: 4.7,
-  },
-  {
-    id: 9,
-    image: '../images/pic--borofone.png',
-    title: 'BOROFONE BO4',
-    category: 'Беспроводные наушники',
-    price: 7527,
-    rating: 4.7,
-  },
-]
+const products = ref([])
 
 const favorite = useFavoriteStore()
 
 const { favoriteProducts } = storeToRefs(favorite)
 
-// onMounted(async () => {
-//   try {
-//     const res = await axios.get('https://f6c4889c93430217.mokky.dev/items')
-//     products.value = res.data
-//   } catch (err) {
-//     console.log(err)
-//   }
-// })
+onMounted(async () => {
+  try {
+    const res = await axios.get('https://f6c4889c93430217.mokky.dev/items')
+    products.value = res.data
+  } catch (err) {
+    console.log(err)
+  }
+})
 watch([products, favoriteProducts], () => {
   allProducts.value = products.value.reduce((acc, product) => {
     const foundCategory = acc.find(item => item.category === product.category);
