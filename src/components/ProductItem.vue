@@ -42,109 +42,109 @@ const addToFavorite = () => {
 </template>
 
 <style scoped>
+.product-item {
+  position: relative;
+  width: calc((100% / 3) - 30px);
+  margin: 15px;
+  padding: 25px 20px 30px;
+  border-radius: 30px;
+  background-color: #ffffff;
+  filter: drop-shadow(0 0 20px rgba(0, 0, 0, .1));
+}
+.product-item__favorite {
+  position: absolute;
+  top: 18px;
+  right: 28px;
+  padding-left: 0;
+  padding-right: 0;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.product-item__favorite:hover svg,
+.product-item__favorite--active svg {
+  fill: #FFA542;
+}
+.product-item__image-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 240px;
+  margin-bottom: 40px;
+}
+.product-item__image {
+  max-width: 100%;
+}
+.product-item__content {
+  display: flex;
+  justify-content: space-between;
+}
+.product-item__content:not(.product-item__content--last) {
+  margin-bottom: 25px;
+}
+.product-item__title a {
+  font-size: 17px;
+  line-height: 21px;
+  font-weight: 600;
+  color: #1C1C27;
+  text-decoration: none;
+}
+.product-item__title a:hover {
+  color: #FFA542;
+}
+.product-item__price {
+  position: relative;
+  margin-left: 16px;
+  font-size: 17px;
+  line-height: 21px;
+  font-weight: 600;
+  color: #FFA542;
+  white-space: nowrap;
+}
+.product-item__price-sale {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  font-size: 13px;
+  line-height: 16px;
+  color: #FFCE7F;
+  text-align: center;
+  text-decoration: line-through;
+}
+.product-item__rating {
+  display: flex;
+  align-items: center;
+  font-size: 17px;
+  line-height: 21px;
+  font-weight: 600;
+  color: #838383;
+}
+.product-item__rating img {
+  margin-right: 10px;
+}
+.product-item__buy {
+  font-family: inherit;
+  font-size: 17px;
+  line-height: 21px;
+  font-weight: 600;
+  color: #000000;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.product-item__buy:hover {
+  color: #FFA542;
+}
+@media (max-width: 768px) {
   .product-item {
-    position: relative;
-    width: calc((100% / 3) - 30px);
-    margin: 15px;
-    padding: 25px 20px 30px;
-    border-radius: 30px;
-    background-color: #ffffff;
-    filter: drop-shadow(0 0 20px rgba(0, 0, 0, .1));
+    width: calc(50% - 30px);
   }
-  .product-item__favorite {
-    position: absolute;
-    top: 18px;
-    right: 28px;
-    padding-left: 0;
-    padding-right: 0;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
+}
+@media (max-width: 575px) {
+  .product-item {
+    width: calc(100% - 30px);
   }
-  .product-item__favorite:hover svg,
-  .product-item__favorite--active svg {
-    fill: #FFA542;
-  }
-  .product-item__image-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 240px;
-    margin-bottom: 40px;
-  }
-  .product-item__image {
-    max-width: 100%;
-  }
-  .product-item__content {
-    display: flex;
-    justify-content: space-between;
-  }
-  .product-item__content:not(.product-item__content--last) {
-    margin-bottom: 25px;
-  }
-  .product-item__title a {
-    font-size: 17px;
-    line-height: 21px;
-    font-weight: 600;
-    color: #1C1C27;
-    text-decoration: none;
-  }
-  .product-item__title a:hover {
-    color: #FFA542;
-  }
-  .product-item__price {
-    position: relative;
-    margin-left: 16px;
-    font-size: 17px;
-    line-height: 21px;
-    font-weight: 600;
-    color: #FFA542;
-    white-space: nowrap;
-  }
-  .product-item__price-sale {
-    position: absolute;
-    left: 0;
-    top: 100%;
-    width: 100%;
-    font-size: 13px;
-    line-height: 16px;
-    color: #FFCE7F;
-    text-align: center;
-    text-decoration: line-through;
-  }
-  .product-item__rating {
-    display: flex;
-    align-items: center;
-    font-size: 17px;
-    line-height: 21px;
-    font-weight: 600;
-    color: #838383;
-  }
-  .product-item__rating img {
-    margin-right: 10px;
-  }
-  .product-item__buy {
-    font-family: inherit;
-    font-size: 17px;
-    line-height: 21px;
-    font-weight: 600;
-    color: #000000;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-  }
-  .product-item__buy:hover {
-    color: #FFA542;
-  }
-  @media (max-width: 768px) {
-    .product-item {
-      width: calc(50% - 30px);
-    }
-  }
-  @media (max-width: 575px) {
-    .product-item {
-      width: calc(100% - 30px);
-    }
-  }
+}
 </style>

@@ -24,7 +24,11 @@ export const useFavoriteStore = defineStore('favorite', () => {
     if (existing) {
       favoriteProducts.value = favoriteProducts.value.filter(entry => entry.id !== product.id)
     } else {
-      favoriteProducts.value.push(product);
+      let addedProduct = {
+        ...product,
+        favorite: true,
+      }
+      favoriteProducts.value.push(addedProduct);
     }
 
     updateSessionFavorite();

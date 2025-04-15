@@ -33,60 +33,60 @@ const favoriteCounter = computed(() => favorite.totalQty())
 </template>
 
 <style scoped>
-  .header {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    max-width: 1140px;
-    margin: 0 auto;
-    padding: 20px 15px;
-  }
-  .header__logo {
-    margin-right: auto;
-    font-size: 25px;
-    line-height: 100%;
-    font-weight: 700;
-    color: #101010;
-    text-decoration: none;
-  }
-  .header__logo:hover {
-    color: #FFA542;
-  }
-  .header__link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 24px;
-    width: 24px;
-    text-decoration: none;
-  }
-  .header__link:last-child {
-    margin-left: 45px;
-  }
-  .header__link svg {
-    fill: #838383;
-  }
-  .header__link:hover svg,
-  .router-link-active svg {
-    fill: #FFA542;
-  }
-  .header__link-icon-wrapper {
-    position: relative;
-  }
-  .header__link-counter {
-    position: absolute;
-    top: -8px;
-    right: -10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 18px;
-    height: 18px;
-    font-size: 12px;
-    line-height: 100%;
-    color: #ffffff;
-    font-weight: 500;
-    border-radius: 100%;
-    background-color: #FFA542;
-  }
+.header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 20px 15px;
+}
+.header__logo {
+  margin-right: auto;
+  font-size: 25px;
+  line-height: 100%;
+  font-weight: 700;
+  color: #101010;
+  text-decoration: none;
+}
+.header__logo:hover {
+  color: #FFA542;
+}
+.header__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  width: 24px;
+  text-decoration: none;
+}
+.header__link:last-child {
+  margin-left: 45px;
+}
+.header__link svg {
+  fill: #838383;
+}
+.header__link:hover svg,
+.router-link-active svg {
+  fill: #FFA542;
+}
+.header__link-icon-wrapper {
+  position: relative;
+}
+.header__link-counter {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  font-size: 12px;
+  line-height: 100%;
+  color: #ffffff;
+  font-weight: 500;
+  border-radius: 100%;
+  background-color: #FFA542;
+}
 </style>
