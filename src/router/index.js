@@ -1,4 +1,4 @@
-import {createRouter, createWebHashHistory, createWebHistory} from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/TheHome.vue'
 import Cart from '../views/TheCart.vue'
 import Favorites from '../views/TheFavorites.vue'
@@ -12,7 +12,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes,
 })
 
