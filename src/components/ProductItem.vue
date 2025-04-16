@@ -80,6 +80,7 @@ const addToFavorite = () => {
 }
 .product-item__image {
   max-width: 100%;
+  cursor: pointer;
 }
 .product-item__content {
   display: flex;
@@ -94,6 +95,7 @@ const addToFavorite = () => {
   font-weight: 600;
   color: #1C1C27;
   text-decoration: none;
+  cursor: pointer;
 }
 .product-item__title a:hover {
   color: #FFA542;
