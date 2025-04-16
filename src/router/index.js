@@ -2,13 +2,13 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/TheHome.vue'
 import Cart from '../views/TheCart.vue'
 import Favorites from '../views/TheFavorites.vue'
-import Order from "@/views/TheOrder.vue";
+import NotFound from '../views/NotFound.vue'
 
 const routes = [
   { path: '/', component: Home },
   { path: '/cart', component: Cart },
   { path: '/favorites', component: Favorites },
-  { path: '/order', component: Order },
+  { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound }
 ]
 
 const router = createRouter({

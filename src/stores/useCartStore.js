@@ -70,12 +70,18 @@ export const useCartStore = defineStore('cart', () => {
     updateSessionCart()
   }
 
+  const clearCart = () => {
+    cartProducts.value = [];
+    updateSessionCart()
+  }
+
   return {
     cartProducts,
     addToCart,
     totalQty,
     totalSum,
     removeItemCart,
-    updateCartItem
+    updateCartItem,
+    clearCart
   }
 })

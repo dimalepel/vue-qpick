@@ -18,13 +18,11 @@ const removeFromCart = (id) => {
       </svg>
     </button>
     <div class="cart-item__content-wrapper">
-      <a href="#" class="cart-item__image-wrapper">
+      <div class="cart-item__image-wrapper">
         <img :src="product.item.image" alt="">
-      </a>
+      </div>
       <div class="cart-item__content">
-        <h2 class="cart-item__title">
-          <a href="#">{{ product.item.title }}</a>
-        </h2>
+        <h2 class="cart-item__title">{{ product.item.title }}</h2>
         <div class="cart-item__price">{{ product.item.price }} ₽</div>
       </div>
     </div>
@@ -86,15 +84,12 @@ const removeFromCart = (id) => {
 .cart-item__title {
   margin-bottom: 12px;
 }
-.cart-item__title a {
+.cart-item__title {
   font-size: 17px;
   line-height: 21px;
   font-weight: 500;
   color: #1C1C27;
   text-decoration: none;
-}
-.cart-item__title a:hover {
-  color: #FFA542;
 }
 .cart-item__price {
   font-size: 15px;

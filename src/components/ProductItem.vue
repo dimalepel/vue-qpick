@@ -1,9 +1,12 @@
 <script setup>
 import { useCartStore } from '@/stores/useCartStore'
 import {useFavoriteStore} from "@/stores/useFavoriteStore.js";
+import ProductDetails from "@/components/ProductDetails.vue";
+import {ref} from "vue";
 const { product } = defineProps(['product'])
 const cart = useCartStore()
 const favorite = useFavoriteStore()
+const open = ref(false)
 
 const addToCart = () => {
   cart.addToCart(product)
@@ -21,16 +24,16 @@ const addToFavorite = () => {
         <path d="M11.4867 1.65429C14.0706 -0.627558 18.0635 -0.551821 20.5528 1.90098C23.0409 4.35487 23.1267 8.2629 20.8124 10.812L11.4845 20L2.15892 10.812C-0.155442 8.2629 -0.068543 4.34837 2.41851 1.90098C4.90996 -0.548575 8.89519 -0.630804 11.4867 1.65429ZM18.9952 3.42979C17.3452 1.80469 14.6833 1.73869 12.9563 3.26425L11.4878 4.56044L10.0183 3.26533C8.2858 1.73761 5.62935 1.80469 3.97498 3.43195C2.33601 5.04407 2.25351 7.62455 3.76379 9.32971L11.4856 16.937L19.2075 9.3308C20.7189 7.62455 20.6364 5.04732 18.9952 3.42979Z"/>
       </svg>
     </button>
-    <a href="#" class="product-item__image-wrapper">
+    <a @click="open = true" class="product-item__image-wrapper">
       <img class="product-item__image" :src="product.image" alt="">
     </a>
     <div class="product-item__content">
       <h3 class="product-item__title">
-        <a href="#">{{ product.title }}</a>
+        <a @click="open = true">{{ product.title }}</a>
       </h3>
       <div class="product-item__price">
         {{ product.price }} ₽
-        <span class="product-item__price-sale" v-if="product.price_old">3527 ₽</span>
+        <span class="product-item__price-sale" v-if="product.price_old">{{ product.price_old }} ₽</span>
       </div>
     </div>
     <div class="product-item__content product-item__content--last">
@@ -39,6 +42,8 @@ const addToFavorite = () => {
       <button class="product-item__buy" type="button" @click="addToCart">Купить</button>
     </div>
   </li>
+
+  <ProductDetails v-model:open="open" :product="product"/>
 </template>
 
 <style scoped>
