@@ -38,7 +38,7 @@ const addToFavorite = () => {
     </div>
     <div class="product-item__content product-item__content--last">
           <span class="product-item__rating">
-            <img src="../assets/icon--star.svg" alt="">4.7</span>
+            <img src="../assets/icon--star.svg" alt="">{{ product.rating }}</span>
       <button class="product-item__buy" type="button" @click="addToCart">Купить</button>
     </div>
   </li>
