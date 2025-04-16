@@ -15,6 +15,7 @@ const cardCVV = ref('')
 const success = ref(false)
 
 const errors = ref({})
+const orderId = ref(0)
 
 function closeModal() {
   emit('update:open', false)
@@ -56,14 +57,14 @@ const confirmOrder = async () => {
 
     })
     console.log('Ответ от сервера:', response.data)
+    console.log('Id заказа:', response.data.id)
+    orderId.value = response.data.id;
     emit('order-confirmed')
     success.value = true
   } catch (error) {
     console.error('Ошибка при отправке:', error)
     success.value = false
   }
-
-  emit('update:open', false);
 }
 </script>
 
@@ -76,47 +77,53 @@ const confirmOrder = async () => {
             <path d="M 4.9902344 3.9902344 A 1.0001 1.0001 0 0 0 4.2929688 5.7070312 L 10.585938 12 L 4.2929688 18.292969 A 1.0001 1.0001 0 1 0 5.7070312 19.707031 L 12 13.414062 L 18.292969 19.707031 A 1.0001 1.0001 0 1 0 19.707031 18.292969 L 13.414062 12 L 19.707031 5.7070312 A 1.0001 1.0001 0 0 0 18.980469 3.9902344 A 1.0001 1.0001 0 0 0 18.292969 4.2929688 L 12 10.585938 L 5.7070312 4.2929688 A 1.0001 1.0001 0 0 0 4.9902344 3.9902344 z"/>
           </svg>
         </button>
-        <p class="modal__title">Введите Ваши данные</p>
-        <form class="form" @submit.prevent="confirmOrder">
-          <label class="form__item">
-            <span class="form__label">Ваше имя</span>
-            <input :class="{ 'input--error': errors.name }" class="form__input" type="text" v-model="name">
-          </label>
-          <label class="form__item">
-            <span class="form__label">Номер телефона</span>
-            <input :class="{ 'input--error': errors.phone }" v-mask="'+7 (###) ###-##-##'" placeholder="+7 (___) ___-__-__" class="form__input" type="text" v-model="phone">
-          </label>
-          <label class="form__item">
-            <span class="form__label">Адрес доставки</span>
-            <input :class="{ 'input--error': errors.address }" class="form__input" type="text" v-model="address">
-          </label>
-          <label class="form__item">
-            <span class="form__label">Номер карты</span>
-            <input :class="{ 'input--error': errors.cardNumber }" v-mask="'#### #### #### ####'" placeholder="0000 0000 0000 0000" class="form__input" type="text" v-model="cardNumber">
-          </label>
-          <label class="form__item">
-            <span class="form__label">Имя на карте</span>
-            <input @input="cardName = $event.target.value.toUpperCase()" :class="{ 'input--error': errors.cardName }" class="form__input" type="text" v-model="cardName">
-          </label>
-          <div class="form__row">
+        <div v-if="orderId > 0">
+          <p class="modal__title">Спасибо за заказ!</p>
+          <p>Ваш заказ №{{ orderId }} оформлен. В ближайшее время с Вами свяжется менеджер.</p>
+          <router-link to="/" class="modal__button modal__button--margin-top">Продолжить покупки</router-link>
+        </div>
+        <div v-else>
+          <p class="modal__title">Введите Ваши данные</p>
+          <form class="form" @submit.prevent="confirmOrder">
             <label class="form__item">
-              <span class="form__label">Срок действия</span>
-              <input :class="{ 'input--error': errors.cardDate }" v-mask="'##/##'" placeholder="MM/YY" class="form__input" type="text" v-model="cardDate">
+              <span class="form__label">Ваше имя</span>
+              <input :class="{ 'input--error': errors.name }" class="form__input" type="text" v-model="name">
             </label>
             <label class="form__item">
-              <span class="form__label">CVV</span>
-              <input :class="{ 'input--error': errors.cardCVV }" v-mask="'###'" class="form__input" type="text" v-model="cardCVV">
+              <span class="form__label">Номер телефона</span>
+              <input :class="{ 'input--error': errors.phone }" v-mask="'+7 (###) ###-##-##'" placeholder="+7 (___) ___-__-__" class="form__input" type="text" v-model="phone">
             </label>
-          </div>
-          <button class="form__button" type="submit">Оплатить {{ props.cost }} ₽</button>
-        </form>
+            <label class="form__item">
+              <span class="form__label">Адрес доставки</span>
+              <input :class="{ 'input--error': errors.address }" class="form__input" type="text" v-model="address">
+            </label>
+            <label class="form__item">
+              <span class="form__label">Номер карты</span>
+              <input :class="{ 'input--error': errors.cardNumber }" v-mask="'#### #### #### ####'" placeholder="0000 0000 0000 0000" class="form__input" type="text" v-model="cardNumber">
+            </label>
+            <label class="form__item">
+              <span class="form__label">Имя на карте</span>
+              <input @input="cardName = $event.target.value.toUpperCase()" :class="{ 'input--error': errors.cardName }" class="form__input" type="text" v-model="cardName">
+            </label>
+            <div class="form__row">
+              <label class="form__item">
+                <span class="form__label">Срок действия</span>
+                <input :class="{ 'input--error': errors.cardDate }" v-mask="'##/##'" placeholder="MM/YY" class="form__input" type="text" v-model="cardDate">
+              </label>
+              <label class="form__item">
+                <span class="form__label">CVV</span>
+                <input :class="{ 'input--error': errors.cardCVV }" v-mask="'###'" class="form__input" type="text" v-model="cardCVV">
+              </label>
+            </div>
+            <button class="modal__button" type="submit">Оплатить {{ props.cost }} ₽</button>
+          </form>
+        </div>
       </div>
     </div>
   </Teleport>
 </template>
 
 <style scoped>
-
 .form__item {
   display: block;
   margin-bottom: 10px;
@@ -143,22 +150,6 @@ const confirmOrder = async () => {
 }
 .form__row .form__item {
   width: calc(50% - 8px);
-}
-.form__button {
-  display: block;
-  width: 100%;
-  padding: 10px 14px;
-  font-size: 14px;
-  line-height: 21px;
-  font-weight: 600;
-  color: #ffffff;
-  background-color: #101010;
-  text-align: center;
-  border-radius: 8px;
-  border: none;
-  font-family: inherit;
-  cursor: pointer;
-  text-decoration: none;
 }
 .form__button:hover {
   background-color: #FFCE7F;
